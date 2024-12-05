@@ -3,8 +3,8 @@ import { useFilterStore } from '~/stores/filterStore'
 
 const filterStore = useFilterStore()
 
-const countryValue = ref('DEFAULT')
-const countryCity = ref('DEFAULT')
+const countryValue = ref(ilterStore.selectedCountry)
+const cityValue = ref(ilterStore.selectedCity)
 
 const countySelect = reactive({
   placeholder: 'Выберите страну',
@@ -14,7 +14,7 @@ const countySelect = reactive({
 
 const citySelect = reactive({
   placeholder: 'Выберите город',
-  selectedOption: filterStore.selectedCity,
+  selectedOption: cityValue,
   options: filterStore.city,
 })
 
@@ -37,7 +37,7 @@ onMounted(() => {
       </h4>
       <div class="mt-[30px] grid grid-cols-1 gap-4">
         <Select v-bind="countySelect" v-model="countryValue" @update:selected="value => { filterStore.selectCountry(value) }" />
-        <Select v-bind="citySelect" v-model="countryCity" @update:selected="value => { filterStore.selectCity(value) }" />
+        <Select v-bind="citySelect" v-model="cityValue" @update:selected="value => { filterStore.selectCity(value) }" />
       </div>
     </div>
     <div>
