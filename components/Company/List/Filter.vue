@@ -23,6 +23,10 @@ function setDefault() {
   countryValue.value = 'DEFAULT'
   countryCity.value = 'DEFAULT'
 }
+
+onMounted(() => {
+  filterStore.initializeFromLocalStorage()
+})
 </script>
 
 <template>
