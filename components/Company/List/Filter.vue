@@ -3,8 +3,8 @@ import { useFilterStore } from '~/stores/filterStore'
 
 const filterStore = useFilterStore()
 
-const countryValue = ref(ilterStore.selectedCountry)
-const cityValue = ref(ilterStore.selectedCity)
+const countryValue = ref('')
+const cityValue = ref('')
 
 const countySelect = reactive({
   placeholder: 'Выберите страну',
@@ -21,11 +21,13 @@ const citySelect = reactive({
 function setDefault() {
   filterStore.setDefaultFilters()
   countryValue.value = 'DEFAULT'
-  countryCity.value = 'DEFAULT'
+  cityValue.value = 'DEFAULT'
 }
 
 onMounted(() => {
   filterStore.initializeFromLocalStorage()
+  countryValue.value = filterStore.selectedCountry
+  cityValue.value = filterStore.selectedCity
 })
 </script>
 
